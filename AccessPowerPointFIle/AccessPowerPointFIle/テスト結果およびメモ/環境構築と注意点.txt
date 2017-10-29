@@ -80,3 +80,30 @@ JavaのMavenのように、依存関係があるライブラリを根こそぎ持ってきてくれて便利だが
 　どうもIMEで入力した単位でとれるらしい。これまたちょっと使いづらいので工夫が必要。
 　せめてEnterの単位でとれると何も加工せずに使えるんだが・・
 
+参考サイト
+[環境構築]
+.NET Foundation 
+https://dotnet.myget.org/feed/open-xml-sdk/package/nuget/DocumentFormat.OpenXml
+MSDN
+https://msdn.microsoft.com/en-us/library/office/bb456488.aspx
+どこかのブログ。これを見てOpenXMLでPowerPoint操作できるかやってみる気になった。
+http://www.neko.ne.jp/~freewing/software/open_xml_sdk/
+
+[SDK等のソース]
+GitHub OpenXMLSdkのソース
+https://github.com/OfficeDev/Open-XML-SDK
+
+GitHub OpenXMLSdkToolのソース
+https://github.com/OfficeDev/Open-XML-Package-Editor-Power-Tool-for-Visual-Studio
+
+[使い方]
+図も書けるらしい
+https://qiita.com/JVoltex/items/6b7232dc2757c904dde0
+
+MSDNにチュートリアルもある
+https://msdn.microsoft.com/ja-jp/library/office/gg278331.aspx
+https://msdn.microsoft.com/ja-jp/library/office/cc850847.aspx
+
+OpenXMLを応用したものらしい
+https://github.com/tkrotoff/PptxTemplater
+
