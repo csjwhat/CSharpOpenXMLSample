@@ -1,0 +1,82 @@
+●プロジェクト環境構築に関するコメント
+
+OpenXML利用時はライブラリ参照が必要
+ソリューションエクスプローラでプロジェクトを右クリックし、追加＞参照を選んだ後
+以下のライブラリにチェックを入れてOKする。
+
+① DocumentFormat.OpenXML 
+② WindowBase
+
+https://msdn.microsoft.com/en-us/library/office/bb456488.aspx
+
+--------- DocumentFormat.OpenXML の取得方法 -----------------------------------------
+①のDocumentFormat.OpenXMLは､VisualStudio2017ならNugetでダウンロード可能だし
+ソースもGitHubから取得できる。
+
+Nugetパッケージマネージャを使ったライブラリ取得
+パッケージソースの設定
+OpenXML SDKのパッケージに行って、Table 1: The latest builds are available via a MyGet feedからパッケージソースのFeed URLを得ます。Nuget V3であればhttps://dotnet.myget.org/F/open-xml-sdk/api/v3/index.json になります。
+次の手順でパッケージソースをVisual Studio Nugetパッケージマネージャーの設定に追加します。
+Visual Studio のツール -> Nugetパッケージマネージャー -> パッケージマネージャー設定 をクリックしてオプションを開く
+Nugetパッケージマネージャー/パッケージソースの項目を開き、利用可能なパッケージソースに項目を追加
+適当な名前（ここではdotnetopenxml）をつけ、ソースに先ほどのURLを記入して更新。
+参考：mygetからのパッケージ取得、github.com/OfficeDev/Open-XML-SDK
+
+https://github.com/OfficeDev/Open-XML-SDK
+https://qiita.com/JVoltex/items/6b7232dc2757c904dde0
+
+この状態で Nugetパッケージマネージャ>ソリューションのNugetパッケージの管理 を開き、パッケージソースを選択すると
+「パッケージソース」セレクトボックスで、利用可能なパッケージソースに追加した名前が選べるようになる。
+名前を選択すると「DocumentFormat.OpenXML」が表示されるので、プロジェクトを選択してインストールをクリックする。
+
+この状態で、packages.configにOpenXMLの依存関係が書き込まれる。→ このプロジェクトに参照が追加される。
+
+インストール時のログは以下。
+
+'.NETFramework,Version=v4.6.1' を対象とするプロジェクト 'AccessPowerPointFIle' に関して、パッケージ 'DocumentFormat.OpenXml.2.7.2' の依存関係情報の収集を試行しています
+依存関係情報の収集に 30.17 sec かかりました
+DependencyBehavior 'Lowest' でパッケージ 'DocumentFormat.OpenXml.2.7.2' の依存関係の解決を試行しています
+依存関係情報の解決に 0 ms かかりました
+パッケージ 'DocumentFormat.OpenXml.2.7.2' をインストールするアクションを解決しています
+パッケージ 'DocumentFormat.OpenXml.2.7.2' をインストールするアクションが解決されました
+'OpenXML' からパッケージ 'DocumentFormat.OpenXml 2.7.2' を取得しています。
+'nuget.org' からパッケージ 'System.IO.FileSystem.Primitives 4.0.1' を取得しています。
+'nuget.org' からパッケージ 'System.IO.Packaging 4.0.0' を取得しています。
+  GET https://api.nuget.org/v3-flatcontainer/system.io.packaging/4.0.0/system.io.packaging.4.0.0.nupkg
+  GET https://api.nuget.org/v3-flatcontainer/system.io.filesystem.primitives/4.0.1/system.io.filesystem.primitives.4.0.1.nupkg
+  GET https://dotnet.myget.org/F/open-xml-sdk/api/v2/package/DocumentFormat.OpenXml/2.7.2
+  OK https://api.nuget.org/v3-flatcontainer/system.io.filesystem.primitives/4.0.1/system.io.filesystem.primitives.4.0.1.nupkg 702 ミリ秒
+System.IO.FileSystem.Primitives 4.0.1 をインストールしています。
+  OK https://api.nuget.org/v3-flatcontainer/system.io.packaging/4.0.0/system.io.packaging.4.0.0.nupkg 780 ミリ秒
+System.IO.Packaging 4.0.0 をインストールしています。
+  OK https://dotnet.myget.org/F/open-xml-sdk/api/v2/package/DocumentFormat.OpenXml/2.7.2 3020 ミリ秒
+DocumentFormat.OpenXml 2.7.2 をインストールしています。
+パッケージ 'System.IO.FileSystem.Primitives.4.0.1' をフォルダー 'C:\Users\Tetsutaro Yamada\Source\Repos\CSharpOpenXMLSample\AccessPowerPointFIle\packages' に追加しています
+パッケージ 'System.IO.FileSystem.Primitives.4.0.1' をフォルダー 'C:\Users\Tetsutaro Yamada\Source\Repos\CSharpOpenXMLSample\AccessPowerPointFIle\packages' に追加しました
+パッケージ 'System.IO.FileSystem.Primitives.4.0.1' を 'packages.config' に追加しました
+'System.IO.FileSystem.Primitives 4.0.1' が AccessPowerPointFIle に正常にインストールされました
+パッケージ 'System.IO.Packaging.4.0.0' をフォルダー 'C:\Users\Tetsutaro Yamada\Source\Repos\CSharpOpenXMLSample\AccessPowerPointFIle\packages' に追加しています
+パッケージ 'System.IO.Packaging.4.0.0' をフォルダー 'C:\Users\Tetsutaro Yamada\Source\Repos\CSharpOpenXMLSample\AccessPowerPointFIle\packages' に追加しました
+パッケージ 'System.IO.Packaging.4.0.0' を 'packages.config' に追加しました
+'System.IO.Packaging 4.0.0' が AccessPowerPointFIle に正常にインストールされました
+パッケージ 'DocumentFormat.OpenXml.2.7.2' をフォルダー 'C:\Users\Tetsutaro Yamada\Source\Repos\CSharpOpenXMLSample\AccessPowerPointFIle\packages' に追加しています
+パッケージ 'DocumentFormat.OpenXml.2.7.2' をフォルダー 'C:\Users\Tetsutaro Yamada\Source\Repos\CSharpOpenXMLSample\AccessPowerPointFIle\packages' に追加しました
+パッケージ 'DocumentFormat.OpenXml.2.7.2' を 'packages.config' に追加しました
+'DocumentFormat.OpenXml 2.7.2' が AccessPowerPointFIle に正常にインストールされました
+NuGet の操作の実行に 45.91 sec かかりました
+経過した時間: 00:01:17.7722176
+========== 終了 ==========
+
+
+----------NUgetについて        ------------------------------------------------------
+JavaのMavenのように、依存関係があるライブラリを根こそぎ持ってきてくれて便利だが
+自分の知らないライブラリがインストールされちゃうので競合とライセンスには常に注意が必要。
+
+● あとはサンプルソースを見れば。今までわかっている注意点
+
+・サンプルのファイル作成は、本当に何もないファイルが作られる。ソースが長いわりにちょっと使いづらい。
+　→ テンプレート（マスター？）を作れるか検証したほうが良い。
+・Textというオブジェクトで取得できるのは、テキストボックスの中丸ごとではなく、
+　どうもIMEで入力した単位でとれるらしい。これまたちょっと使いづらいので工夫が必要。
+　せめてEnterの単位でとれると何も加工せずに使えるんだが・・
+
